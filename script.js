@@ -41,7 +41,7 @@ function draw() {
     textSize(22); 
     textAlign(CENTER, TOP);  
     fill("white");
-    text("Pontos: "+countpoints, width / 2, 20); 
+    text("Black Hole\nPontos: "+countpoints, width / 2, 20); 
 }
 
 function coletarPonto(x1,x2,y1,y2,r1,r2) {
