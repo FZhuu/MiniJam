@@ -37,13 +37,13 @@ function draw() {
         textSize(90);
         text("Black Hole", windowWidth / 2.84, windowHeight / 4);
         textSize(30);
-        text("Coma os planetas", windowWidth / 2.28, windowHeight / 3.3);
+        text("Coma os planetas", windowWidth / 2.4, windowHeight / 3.3);
         stroke(255, 255, 255, 150);
         fill(255, 255, 255, 150);
         textSize(20);
-        text("Pressione o espaço para começar", windowWidth / 2.27, windowHeight / 2.1);
+        text("Pressione o espaço para começar", windowWidth / 2.5, windowHeight / 2.1);
         textSize(20);
-        text("Use WASD para se mover", windowWidth / 2.268, windowHeight / 1.95);
+        text("Use WASD para se mover", windowWidth / 2.35, windowHeight / 1.95);
         if (keyIsDown(32)) {
             gameStarted = true;
         }
@@ -55,11 +55,11 @@ function draw() {
         textSize(90);
         text("Game Over", windowWidth / 2.95, windowHeight / 4);
         textSize(30);
-        text("Gostaria de jogar novamente?", windowWidth / 2.44, windowHeight / 3.3);
+        text("Gostaria de jogar novamente?", windowWidth / 2.75, windowHeight / 3.3);
         stroke(255, 255, 255, 150);
         fill(255, 255, 255, 150);
         textSize(20);
-        text("Pressione o espaço para recomeçar", windowWidth / 2.27, windowHeight / 2.1);
+        text("Pressione o espaço para recomeçar", windowWidth / 2.55, windowHeight / 2.1);
         if (keyIsDown(32)) {
             BHradius = 30;
             speed = 5;
@@ -80,11 +80,11 @@ function draw() {
         textSize(90);
         text("Vitória!", windowWidth / 2.45, windowHeight / 4);
         textSize(30);
-        text("Gostaria de jogar novamente?", windowWidth / 2.44, windowHeight / 3);
+        text("Gostaria de jogar novamente?", windowWidth / 2.75, windowHeight / 3);
         stroke(255, 255, 255, 150);
         fill(255, 255, 255, 150);
         textSize(20);
-        text("Pressione o espaço para recomeçar", windowWidth / 2.27, windowHeight / 2.1);
+        text("Pressione o espaço para recomeçar", windowWidth / 2.55, windowHeight / 2.1);
         if (keyIsDown(32)) {
             BHradius = 30;
             speed = 5;
