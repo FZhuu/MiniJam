@@ -9,7 +9,8 @@ let originPosition,
     gameOvered = false,
     victory = false,
     estrelas = 0,
-    contadorEstrelas = 400;
+    contadorEstrelas = 400,
+    radiusMeteor;
 
 function setup() {
     createCanvas(windowWidth - (windowWidth * 0.0001), windowHeight - (windowHeight * 0.001));
@@ -68,6 +69,8 @@ function draw() {
             victory = false;
             vidas = 3;
             countpoints = 0;
+            originPosition.x = windowWidth / 2;
+            originPosition.y = windowHeight / 2;
         }
     } else if (!gameStarted && !gameOvered && victory) {
         background("black");
@@ -91,6 +94,8 @@ function draw() {
             victory = false;
             vidas = 3;
             countpoints = 0;
+            originPosition.x = windowWidth / 2;
+            originPosition.y = windowHeight / 2;
         }
     } else { gameStart(); }
 
@@ -133,58 +138,59 @@ function gameStart() {
     let c6vel = p5.Vector.sub(originPosition, c6pos)
     let c7vel = p5.Vector.sub(originPosition, c7pos)
     drawMeteor(c2pos.x, c2pos.y, 50, random(80, 150))
-    if (p5.Vector.dist(originPosition, c2pos) < 50) {
+    if (p5.Vector.dist(originPosition, c2pos) < (BHradius/2 + 25)) {
         c2pos = gerarForaDaTela();
         vidas--
     } else {
-        c2vel.setMag(2);
+        c2vel.setMag(speed/2);
         c2pos.add(c2vel);
     }
     if (countpoints >= 1) {
         drawMeteor(c3pos.x, c3pos.y, 50, random(80, 150))
-        if (p5.Vector.dist(originPosition, c3pos) < 50) {
+        if (p5.Vector.dist(originPosition, c3pos) < (BHradius/2 + 25)) {
             c3pos = gerarForaDaTela();
             vidas--
         }
-        c3vel.setMag(2);
+        c3vel.setMag(speed/2);
         c3pos.add(c3vel);
     }
     if (countpoints >= 2) {
         drawMeteor(c4pos.x, c4pos.y, 50, random(80, 150))
-        if (p5.Vector.dist(originPosition, c4pos) < 50) {
+        if (p5.Vector.dist(originPosition, c4pos) < (BHradius/2 + 25)) {
             c4pos = gerarForaDaTela();
             vidas--
         }
-        c4vel.setMag(2);
+        c4vel.setMag(speed/2);
         c4pos.add(c4vel);
     }
     if (countpoints >= 3) {
         drawMeteor(c5pos.x, c5pos.y, 50, random(80, 150))
-        if (p5.Vector.dist(originPosition, c5pos) < 50) {
+        if (p5.Vector.dist(originPosition, c5pos) < (BHradius/2 + 25)) {
             c5pos = gerarForaDaTela();
             vidas--
         }
-        c5vel.setMag(2);
+        c5vel.setMag(speed/2);
         c5pos.add(c5vel);
     }
     if (countpoints >= 4) {
         drawMeteor(c6pos.x, c6pos.y, 50, random(80, 150))
-        if (p5.Vector.dist(originPosition, c6pos) < 50) {
+        if (p5.Vector.dist(originPosition, c6pos) < (BHradius/2 + 25)) {
             c6pos = gerarForaDaTela();
             vidas--
         }
-        c6vel.setMag(2);
+        c6vel.setMag(speed/2);
         c6pos.add(c6vel);
     }
     if (countpoints >= 5) {
         drawMeteor(c7pos.x, c7pos.y, 50, random(80, 150))
-        if (p5.Vector.dist(originPosition, c7pos) < 50) {
+        if (p5.Vector.dist(originPosition, c7pos) < (BHradius/2 + 25)) {
             c7pos = gerarForaDaTela();
             vidas--
-            c7vel.setMag(2);
-            c7pos.add(c7vel);
         }
+        c7vel.setMag(speed/2);
+        c7pos.add(c7vel);
     }
+    
     fill("black");
     stroke(93, 63, 211, 178.5);
     strokeWeight(2);
@@ -211,7 +217,7 @@ function gameStart() {
         gameOvered = true;
         victory = false;
         return
-    } else if (countpoints >= 30) {
+    } else if (countpoints >= 6) {
         gameStarted = false;
         gameOvered = false;
         victory = true;
@@ -303,9 +309,9 @@ function drawMeteor(x, y, size, tailLength) {
     beginShape();
     for (let i = 0; i < 8; i++) {
         let angle = TWO_PI * i / 8;
-        let radius = size * random(0.8, 1.2);
-        let px = x + cos(angle) * radius;
-        let py = y + sin(angle) * radius;
+        radiusMeteor = size * random(0.8, 1.2);
+        let px = x + cos(angle) * radiusMeteor;
+        let py = y + sin(angle) * radiusMeteor;
         vertex(px, py);
     }
     endShape(CLOSE);
