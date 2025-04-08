@@ -60,6 +60,9 @@ function draw() {
         textSize(20);
         text("press space to restart", windowWidth / 2.27, windowHeight / 2.1);
         if (keyIsDown(32)) {
+            BHradius = 30;
+            speed = 5;
+            pointRadius = 10;
             gameStarted = true;
             gameOvered = false;
             victory = false;
@@ -80,6 +83,9 @@ function draw() {
         textSize(20);
         text("press space to restart", windowWidth / 2.27, windowHeight / 2.1);
         if (keyIsDown(32)) {
+            BHradius = 30;
+            speed = 5;
+            pointRadius = 10;
             gameStarted = true;
             gameOvered = false;
             victory = false;
