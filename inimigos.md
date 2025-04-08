@@ -144,3 +144,162 @@ function draw() {
   
   
 }
+
+
+V2:
+
+
+let contador = 0;
+let vidas = 3;
+let pontuacao = 0;
+let v = 2;
+let t = 50;
+
+function gerarForaDaTela() {
+  let lado = int(random(4)); // 0 = cima, 1 = direita, 2 = baixo, 3 = esquerda
+  let x;
+  let y;
+  
+  if (lado === 0) { // cima
+    x = random(0, width);
+    y = random(-400, -200);
+  } else if (lado === 1) { // direita
+    x = random(width + 200, width + 400);
+    y = random(0, height);
+  } else if (lado === 2) { // baixo
+    x = random(0, width);
+    y = random(height + 20, height + 400);
+  } else { // esquerda
+    x = random(-400, -200);
+    y = random(0, height);
+  }
+  
+  return createVector(x, y);
+}
+ 
+function setup() {
+  createCanvas(600, 600);
+
+  c2pos = createVector(1000,1000)
+  c3pos = createVector(1000,1000)
+  c4pos = createVector(1000,1000)
+  c5pos = createVector(1000,1000)
+  c6pos = createVector(1000,1000)
+  c7pos = createVector(1000,1000)  
+}
+
+function draw() {
+  background(120);
+  c1pos = createVector(mouseX,mouseY)
+  c2vel = p5.Vector.sub(c1pos,c2pos)
+  c3vel = p5.Vector.sub(c1pos,c3pos)
+  c4vel = p5.Vector.sub(c1pos,c4pos)
+  c5vel = p5.Vector.sub(c1pos,c5pos)
+  c6vel = p5.Vector.sub(c1pos,c6pos)
+  c7vel = p5.Vector.sub(c1pos,c7pos)
+  circle(c2pos.x,c2pos.y,50)
+  if (p5.Vector.dist(c1pos,c2pos) < t) {
+  c2pos = gerarForaDaTela();
+    contador ++
+    vidas --
+} else {
+  c2vel.setMag(v);
+  c2pos.add(c2vel); }
+  
+  if(pontuacao >= 5) {
+    circle(c3pos.x,c3pos.y,50)
+    if (p5.Vector.dist(c1pos,c3pos) < t) {
+  c3pos = gerarForaDaTela();
+    pontuacao ++
+    vidas --
+} 
+  c3vel.setMag(v);
+  c3pos.add(c3vel); }
+
+  
+  
+    if(pontuacao >= 10) {
+    circle(c4pos.x,c4pos.y,50)
+    if (p5.Vector.dist(c1pos,c4pos) < t) {
+  c4pos = gerarForaDaTela();
+    pontuacao ++
+    vidas --
+} 
+  c4vel.setMag(v);
+  c4pos.add(c4vel); }
+    
+  
+  
+    if(pontuacao >= 15) {
+    circle(c5pos.x,c5pos.y,50)
+    if (p5.Vector.dist(c1pos,c5pos) < t) {
+  c5pos = gerarForaDaTela();
+    pontuacao ++
+    vidas --
+} 
+  c5vel.setMag(v);
+  c5pos.add(c5vel); }
+    
+  
+  
+  
+    if(pontuacao >= 20) {
+    circle(c6pos.x,c6pos.y,50)
+    if (p5.Vector.dist(c1pos,c6pos) < t) {
+  c6pos = gerarForaDaTela();
+    pontuacao ++
+    vidas --
+} 
+  c6vel.setMag(v);
+  c6pos.add(c6vel); }
+    
+  
+
+    if(pontuacao >= 25) {
+    circle(c7pos.x,c7pos.y,50)
+    if (p5.Vector.dist(c1pos,c7pos) < t) {
+  c7pos = gerarForaDaTela();
+    pontuacao ++
+    vidas --
+ 
+  c7vel.setMag(v);
+  c7pos.add(c7vel); }
+    
+  }
+  
+
+  
+
+  
+  circle(c1pos.x,c1pos.y,t)
+   text("Pontuação: " + pontuacao, 20, 40);
+  text("Vidas: " + vidas, 20, 60);
+  
+  if(vidas < 0) {
+    text("Pontuação final: " + pontuacao, 20, 80);
+    noLoop()
+  }
+  
+  if (frameCount % 120 === 0) {
+  v += 0.5;
+  t += 5;
+  pontuacao += 1;
+}
+  
+    if (frameCount % 1200 === 0) {
+    c1pos = gerarForaDaTela();
+    
+  }
+  
+    if (frameCount % 1500 === 0) {
+    c2pos = gerarForaDaTela();
+  }
+  
+    if (frameCount % 1800 === 0) {
+    c3pos = gerarForaDaTela();
+  }
+
+  
+}
+
+
