@@ -111,16 +111,16 @@ function windowResized() {
 }
 
 function gameStart() {
-    let planetColor = color(random(50, 255), random(50, 255), random(50, 255))
+    let planetaCor = color(random(50, 255), random(50, 255), random(50, 255))
     background("black");
     listaEstrelas.forEach(element => {
         stroke("white");
         fill("white");
-        drawStar(element[0], element[1], element[2], element[3], element[4]);
+        Estrela(element[0], element[1], element[2], element[3], element[4]);
     });
     fill("yellow");
     stroke("yellow");
-    drawPlanet(pointPosition.x, pointPosition.y, pointRadius,planetColor);
+    Planeta(pointPosition.x, pointPosition.y, pointRadius,planetaCor);
     if (coletarPonto(originPosition.x, pointPosition.x, originPosition.y, pointPosition.y, BHradius, 10)) {
         BHradius += 5;
         speed += 0.2;
@@ -137,7 +137,7 @@ function gameStart() {
     let c5vel = p5.Vector.sub(originPosition, c5pos)
     let c6vel = p5.Vector.sub(originPosition, c6pos)
     let c7vel = p5.Vector.sub(originPosition, c7pos)
-    drawMeteor(c2pos.x, c2pos.y, 50, random(80, 150))
+    Meteoro(c2pos.x, c2pos.y, 50, random(80, 150))
     if (p5.Vector.dist(originPosition, c2pos) < (BHradius/2 + 25)) {
         c2pos = gerarForaDaTela();
         vidas--
@@ -146,7 +146,7 @@ function gameStart() {
         c2pos.add(c2vel);
     }
     if (countpoints >= 1) {
-        drawMeteor(c3pos.x, c3pos.y, 50, random(80, 150))
+        Meteoro(c3pos.x, c3pos.y, 50, random(80, 150))
         if (p5.Vector.dist(originPosition, c3pos) < (BHradius/2 + 25)) {
             c3pos = gerarForaDaTela();
             vidas--
@@ -155,7 +155,7 @@ function gameStart() {
         c3pos.add(c3vel);
     }
     if (countpoints >= 2) {
-        drawMeteor(c4pos.x, c4pos.y, 50, random(80, 150))
+        Meteoro(c4pos.x, c4pos.y, 50, random(80, 150))
         if (p5.Vector.dist(originPosition, c4pos) < (BHradius/2 + 25)) {
             c4pos = gerarForaDaTela();
             vidas--
@@ -164,7 +164,7 @@ function gameStart() {
         c4pos.add(c4vel);
     }
     if (countpoints >= 3) {
-        drawMeteor(c5pos.x, c5pos.y, 50, random(80, 150))
+        Meteoro(c5pos.x, c5pos.y, 50, random(80, 150))
         if (p5.Vector.dist(originPosition, c5pos) < (BHradius/2 + 25)) {
             c5pos = gerarForaDaTela();
             vidas--
@@ -173,7 +173,7 @@ function gameStart() {
         c5pos.add(c5vel);
     }
     if (countpoints >= 4) {
-        drawMeteor(c6pos.x, c6pos.y, 50, random(80, 150))
+        Meteoro(c6pos.x, c6pos.y, 50, random(80, 150))
         if (p5.Vector.dist(originPosition, c6pos) < (BHradius/2 + 25)) {
             c6pos = gerarForaDaTela();
             vidas--
@@ -182,7 +182,7 @@ function gameStart() {
         c6pos.add(c6vel);
     }
     if (countpoints >= 5) {
-        drawMeteor(c7pos.x, c7pos.y, 50, random(80, 150))
+        Meteoro(c7pos.x, c7pos.y, 50, random(80, 150))
         if (p5.Vector.dist(originPosition, c7pos) < (BHradius/2 + 25)) {
             c7pos = gerarForaDaTela();
             vidas--
@@ -248,70 +248,65 @@ function gerarForaDaTela() {
 }
 
 
-function drawStar(x, y, raioInterno, raioExterno, numPontas) {
+function Estrela(x, y, raioInterno, raioExterno, numPontas) {
     fill(255, 255, 255); // Cor amarela
     stroke(255, 204, 255);
     strokeWeight(0.5);
 
     beginShape();
     for (let i = 0; i < numPontas * 2; i++) {
-        let angle = TWO_PI * i / (numPontas * 2);
+        let angulo = TWO_PI * i / (numPontas * 2);
         let raio = i % 2 === 0 ? raioExterno : raioInterno;
-        let sx = x + cos(angle) * raio;
-        let sy = y + sin(angle) * raio;
+        let sx = x + cos(angulo) * raio;
+        let sy = y + sin(angulo) * raio;
         vertex(sx, sy);
     }
     endShape(CLOSE);
 }
 
-function drawPlanet(x, y, size, planetColor) {
-    // Atmosphere effect
+function Planeta(x, y, tamanho, planetaCor) {
     noFill();
-    stroke(planetColor);
+    stroke(planetaCor);
     strokeWeight(0);
-    ellipse(x, y, size + 20);
+    ellipse(x, y, tamanho + 20);
 
-    // Planet body
     noStroke();
-    fill(planetColor);
-    ellipse(x, y, size);
+    fill(planetaCor);
+    ellipse(x, y, tamanho);
 
-    // Craters
-    let numCraters = floor(random(3, 8)); // Random number of craters
+    let numCraters = floor(random(3, 8));
     for (let i = 0; i < numCraters; i++) {
-        let angle = random(TWO_PI);
-        let craterX = x + cos(angle) * (size / 3);
-        let craterY = y + sin(angle) * (size / 3);
-        let craterSize = random(size * 0.1, size * 0.2);
+        let angulo = random(TWO_PI);
+        let crateraX = x + cos(angulo) * (tamanho / 3);
+        let crateraY = y + sin(angulo) * (tamanho / 3);
+        let crateraTamanho = random(tamanho * 0.1, tamanho * 0.2);
 
-        fill(0, 50); // Darker crater color
-        ellipse(craterX, craterY, craterSize);
+        fill(0, 50);
+        ellipse(crateraX, crateraY, crateraTamanho);
     }
 }
 
-function drawMeteor(x, y, size, tailLength) {
-    // Fiery tail effect
+function Meteoro(x, y, tamanho, ComprimentoCauda) {
     for (let i = 0; i < 10; i++) {
-        let tailX = x - i * (tailLength / 10);
-        let tailY = y + i * (tailLength / 30);
-        let tailSize = size * (1 - i / 10);
-        let tailAlpha = map(i, 0, 10, 200, 0); // Gradually fades out
+        let caudaX = x - i * (ComprimentoCauda / 10);
+        let caudaY = y + i * (ComprimentoCauda / 30);
+        let caudaTamanho = tamanho * (1 - i / 10);
+        let caudaAlpha = map(i, 0, 10, 200, 0);
 
-        fill(255, random(100, 150), 0, tailAlpha); // Fire color
+        fill(255, random(100, 150), 0, caudaAlpha);
         noStroke();
-        ellipse(tailX, tailY, tailSize * 1.5, tailSize);
+        ellipse(caudaX, caudaY, caudaTamanho * 1.5, caudaTamanho);
     }
 
-    // Meteor core (rocky surface)
     fill(100, 100, 100);
     stroke(50);
     strokeWeight(2);
     beginShape();
     for (let i = 0; i < 8; i++) {
-        let angle = TWO_PI * i / 8;
-        radiusMeteor = size * random(0.8, 1.2);
-        let px = x + cos(angle) * radiusMeteor;
-        let py = y + sin(angle) * radiusMeteor;
+        let angulo = TWO_PI * i / 8;
+        radiusMeteor = tamanho * random(0.8, 1.2);
+        let px = x + cos(angulo) * radiusMeteor;
+        let py = y + sin(angulo) * radiusMeteor;
         vertex(px, py);
     }
     endShape(CLOSE);
