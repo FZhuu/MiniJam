@@ -120,7 +120,7 @@ function gameStart() {
     });
     fill("yellow");
     stroke("yellow");
-    Planeta(pointPosition.x, pointPosition.y, pointRadius,planetaCor);
+    Planeta(pointPosition.x, pointPosition.y, pointRadius, planetaCor);
     if (coletarPonto(originPosition.x, pointPosition.x, originPosition.y, pointPosition.y, BHradius, 10)) {
         BHradius += 5;
         speed += 0.2;
@@ -138,59 +138,59 @@ function gameStart() {
     let c6vel = p5.Vector.sub(originPosition, c6pos)
     let c7vel = p5.Vector.sub(originPosition, c7pos)
     Meteoro(c2pos.x, c2pos.y, 50, random(80, 150))
-    if (p5.Vector.dist(originPosition, c2pos) < (BHradius/2 + 25)) {
+    if (p5.Vector.dist(originPosition, c2pos) < (BHradius / 2 + 25)) {
         c2pos = gerarForaDaTela();
         vidas--
     } else {
-        c2vel.setMag(speed/2);
+        c2vel.setMag(speed / 2);
         c2pos.add(c2vel);
     }
     if (countpoints >= 1) {
         Meteoro(c3pos.x, c3pos.y, 50, random(80, 150))
-        if (p5.Vector.dist(originPosition, c3pos) < (BHradius/2 + 25)) {
+        if (p5.Vector.dist(originPosition, c3pos) < (BHradius / 2 + 25)) {
             c3pos = gerarForaDaTela();
             vidas--
         }
-        c3vel.setMag(speed/2);
+        c3vel.setMag(speed / 2);
         c3pos.add(c3vel);
     }
     if (countpoints >= 2) {
         Meteoro(c4pos.x, c4pos.y, 50, random(80, 150))
-        if (p5.Vector.dist(originPosition, c4pos) < (BHradius/2 + 25)) {
+        if (p5.Vector.dist(originPosition, c4pos) < (BHradius / 2 + 25)) {
             c4pos = gerarForaDaTela();
             vidas--
         }
-        c4vel.setMag(speed/2);
+        c4vel.setMag(speed / 2);
         c4pos.add(c4vel);
     }
     if (countpoints >= 3) {
         Meteoro(c5pos.x, c5pos.y, 50, random(80, 150))
-        if (p5.Vector.dist(originPosition, c5pos) < (BHradius/2 + 25)) {
+        if (p5.Vector.dist(originPosition, c5pos) < (BHradius / 2 + 25)) {
             c5pos = gerarForaDaTela();
             vidas--
         }
-        c5vel.setMag(speed/2);
+        c5vel.setMag(speed / 2);
         c5pos.add(c5vel);
     }
     if (countpoints >= 4) {
         Meteoro(c6pos.x, c6pos.y, 50, random(80, 150))
-        if (p5.Vector.dist(originPosition, c6pos) < (BHradius/2 + 25)) {
+        if (p5.Vector.dist(originPosition, c6pos) < (BHradius / 2 + 25)) {
             c6pos = gerarForaDaTela();
             vidas--
         }
-        c6vel.setMag(speed/2);
+        c6vel.setMag(speed / 2);
         c6pos.add(c6vel);
     }
     if (countpoints >= 5) {
         Meteoro(c7pos.x, c7pos.y, 50, random(80, 150))
-        if (p5.Vector.dist(originPosition, c7pos) < (BHradius/2 + 25)) {
+        if (p5.Vector.dist(originPosition, c7pos) < (BHradius / 2 + 25)) {
             c7pos = gerarForaDaTela();
             vidas--
         }
-        c7vel.setMag(speed/2);
+        c7vel.setMag(speed / 2);
         c7pos.add(c7vel);
     }
-    
+
     fill("black");
     stroke(93, 63, 211, 178.5);
     strokeWeight(2);
@@ -207,6 +207,15 @@ function gameStart() {
     if (keyIsDown(68) || keyIsDown(39)) {
         originPosition.x += speed;
     }
+    if (frameCount % 1200 === 0) {
+        c4pos = gerarForaDaTela();
+    }
+    if (frameCount % 1500 === 0) {
+        c2pos = gerarForaDaTela();
+    }
+    if (frameCount % 1800 === 0) {
+        c3pos = gerarForaDaTela();
+    }
     textSize(22);
     fill("magenta");
     stroke("magenta");
@@ -217,7 +226,7 @@ function gameStart() {
         gameOvered = true;
         victory = false;
         return
-    } else if (countpoints >= 6) {
+    } else if (countpoints >= 50) {
         gameStarted = false;
         gameOvered = false;
         victory = true;
